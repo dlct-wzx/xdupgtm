@@ -23,6 +23,14 @@ xelatex xdupgtm
 latexmk
 ```
 
+Windows 已内置模板使用的宋体、黑体、楷体、华文中宋和 Times New Roman。GNU/Linux、macOS、Overleaf 或 TeXPage 请自行准备这些字体；在线平台可在项目中建立 `fonts/` 目录，上传 `simsun.ttc`、`simkai.ttf`、`simhei.ttf`、`STZHONGS.TTF` 以及 Times New Roman 的常规、粗体、斜体和粗斜体文件，并使用：
+
+```latex
+\documentclass[ma,overleaf]{xdupgtm}
+```
+
+本仓库不分发字体文件。
+
 在 `xdupgtm.tex` 中填写学号、论文题目、姓名、学科或领域、导师、学院、报告日期和选题来源。默认是学术学位博士，切换其他类型时在文档类后增加选项，例如：
 
 ```latex
