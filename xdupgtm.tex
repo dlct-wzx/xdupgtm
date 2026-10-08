@@ -1,0 +1,61 @@
+\documentclass{xdupgtm}
+
+% 学位类型：da 学术博士，dp 专业博士，ma 学术硕士，mp 专业硕士
+% \documentclass[ma]{xdupgtm}
+\newcommand\studentNo{1101110071}
+\newcommand\thesisTitleOne{西安电子科技大学学位论文}
+\newcommand\thesisTitleTwo{中期考核报告表 XeLaTeX 模板}
+\newcommand\authorName{张三}
+\newcommand\major{电子科学与技术}
+\newcommand\submajor{电磁场与微波技术}
+\newcommand\advisorName{李四}
+\newcommand\entadvisorName{王五}
+\newcommand\school{电子工程学院}
+\newcommand\submitDate{2026年10月8日}
+\newcommand\subjectSource{国家自然科学基金}
+
+% 需要电子签名时取消注释，并将图片放入 figures/sign/。
+% \renewcommand\zdjsqm{\sign{lisi}}
+% \renewcommand\zdjsqmrq{2026年10月8日}
+% \renewcommand\xnjsqm{\sign{lisi}}
+% \renewcommand\xyjsqm{\sign{lisi}}
+% \renewcommand\zzqm{\sign{lisi}}
+% \renewcommand\cyqm{\sign{lisi}\emptysign\sign{lisi}}
+
+\begin{document}
+
+\begin{xzlyj}\end{xzlyj}
+\begin{yjmbnr}
+% 在这里填写学位论文研究目标及研究内容。
+\end{yjmbnr}
+\begin{ywcgz}
+% 在这里填写目前已完成学位论文工作的内容及获得的结论。
+\end{ywcgz}
+\begin{bxfsm}
+% 在这里填写与开题报告内容不相符的情况说明；没有变化时填写“无”。
+\end{bxfsm}
+\begin{gzhjh}
+% 在这里填写下一步工作计划、拟完成的研究内容和需解决的关键技术。
+\end{gzhjh}
+\begin{kycg}
+% 在这里填写已发表、已录用或拟发表的论文及其他研究成果。
+\end{kycg}
+
+\ifadegree
+  \begin{jsyj}
+  % 在这里填写指导教师评价意见。
+  \end{jsyj}
+\else
+  \begin{xnjsyj}
+  % 在这里填写校内指导教师评价意见。
+  \end{xnjsyj}
+  \begin{xyjsyj}
+  % 在这里填写校外指导教师评价意见。
+  \end{xyjsyj}
+\fi
+
+\begin{pyjl}
+% 在这里填写中期总结报告评语及结论。
+\end{pyjl}
+
+\end{document}
