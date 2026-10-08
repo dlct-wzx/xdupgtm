@@ -121,7 +121,7 @@
   \vfill\begin{center}\zihao{3}西安电子科技大学研究生院制\end{center}
   \end{titlepage}\newpage
   \vspace*{-28pt}\begin{center}\stzhongsong\zihao{3}\ifddegree 西安电子科技大学博士学位论文中期考核要求\else 西安电子科技大学硕士学位论文中期考核要求\fi\end{center}
-  \vspace{15pt}\zihao{-4}\setlength{\baselineskip}{28pt}
+  \vspace{15pt}\zihao{-4}\setlength{\baselineskip}{28pt}\setlength{\parindent}{0pt}
   \ifddegree
     一、博士生在完成学位论文开题报告后一年内，必须进行学位论文中期考核，具体要求参照开题报告会要求执行。\par
     二、中期考核每年举行2次（6月和12月），每位博士生根据自身实际情况选择考核时间。\par
@@ -136,6 +136,7 @@
     四、中期考核必须在规定时间内通过研究生学位管理系统申请，本表由系统自动生成，用A3纸张正反套印。\par
     五、表格填写要求：正文字体宋体，字号小四，行间距固定值20磅。
   \fi
+  \setlength{\parindent}{2em}
   \newpage
 }
 
