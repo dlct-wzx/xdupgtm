@@ -140,20 +140,20 @@
   \newpage
 }
 
-\newcommand\midtermsection[2]{\vspace*{0.1\baselineskip}\begin{mybox2}\noindent\textbf{#1}\par\ifthenelse{\equal{#2}{}}{}{\noindent（#2）\par}}
+\newcommand\midtermsection[2]{\vspace*{8pt}\begin{mybox2}\noindent\textbf{#1}\par\ifthenelse{\equal{#2}{}}{}{\noindent（#2）\par}}
 \newcommand\midtermend{\end{mybox2}}
-\newenvironment{xzlyj}{\begin{mybox1}\textbf{选题来源：}\subjectSource\end{mybox1}}{}
+\newenvironment{xzlyj}{\begin{mybox1}\textbf{选题来源：}\subjectSource\end{mybox1}}{\vspace{8pt}}
 \newenvironment{yjmbnr}{\midtermsection{一、学位论文研究目标及研究内容}{与开题报告中的研究目标和研究内容一致。}}{\midtermend}
 \newenvironment{ywcgz}{\midtermsection{二、目前已完成学位论文工作的内容}{主要包括所完成的理论和实验研究以及所获得的结论。}}{\midtermend}
 \newenvironment{bxfsm}{\midtermsection{三、现阶段完成的工作与开题报告内容不相符的情况说明}{}}{\midtermend}
 \newenvironment{gzhjh}{\midtermsection{四、下一步工作计划及需要完成的研究内容和需要解决的关键技术}{}}{\midtermend}
 \newenvironment{kycg}{\midtermsection{五、已发表的与学位论文相关的学术论文、其他研究成果以及拟发表的研究成果}{}}{\midtermend}
 
-\newenvironment{jsyj}{\vspace*{0.1\baselineskip}\begin{mybox2}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 指导教师签名：\makebox[6em][l]{\zdjsqm}\\\zdjsqmrq\end{mybox2}}
-\newenvironment{xnjsyj}{\vspace*{0.1\baselineskip}\begin{mybox4}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校内指导教师签名：\makebox[6em][l]{\xnjsqm}\\\xnjsqmrq\end{mybox4}}
-\newenvironment{xyjsyj}{\vspace*{-\boxrule}\begin{mybox4}\noindent\textbf{校外指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校外指导教师签名：\makebox[6em][l]{\xyjsqm}\\\xyjsqmrq\end{mybox4}}
+\newenvironment{jsyj}{\vspace*{8pt}\begin{mybox2}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 指导教师签名：\makebox[6em][l]{\zdjsqm}\\\zdjsqmrq\end{mybox2}}
+\newenvironment{xnjsyj}{\vspace*{8pt}\begin{mybox4}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校内指导教师签名：\makebox[6em][l]{\xnjsqm}\\\xnjsqmrq\end{mybox4}}
+\newenvironment{xyjsyj}{\vspace*{8pt}\begin{mybox4}\noindent\textbf{校外指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校外指导教师签名：\makebox[6em][l]{\xyjsqm}\\\xyjsqmrq\end{mybox4}}
 
-\newenvironment{pyjl}{\vspace*{0.1\baselineskip}\begin{mybox2}\noindent\textbf{中期总结报告评语及结论}\par\noindent（中期考核结论分为两种：1.通过，按专家意见修改后继续学位论文撰写工作；2.不通过，重新考核。评语重点指出中期报告存在的问题并提出具体修改意见和建议。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 组长签名：\makebox[10em][l]{\zzqm}\\成员签名：\makebox[10em][l]{\cyqm}\\\cyqmrq\end{mybox2}}
+\newenvironment{pyjl}{\vspace*{8pt}\begin{mybox2}\noindent\textbf{中期总结报告评语及结论}\par\noindent（中期考核结论分为两种：1.通过，按专家意见修改后继续学位论文撰写工作；2.不通过，重新考核。评语重点指出中期报告存在的问题并提出具体修改意见和建议。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 组长签名：\makebox[10em][l]{\zzqm}\\成员签名：\makebox[10em][l]{\cyqm}\\\cyqmrq\end{mybox2}}
 
 \ctexset{section={name={,、},number={\chinese{section}},format={\raggedright\bfseries\zihao{-4}},aftername={},afterskip={0pt plus 0pt minus 0pt}}}
 \endinput
