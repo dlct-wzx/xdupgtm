@@ -20,5 +20,4 @@
 .DS_Store
 xdupgtm.pdf
 *.pdf
-_qa/
-_qa2/
+_qa*/
