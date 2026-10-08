@@ -48,14 +48,19 @@
 \ifoverleaf
   \setmainfont{times.ttf}[Path=fonts/,BoldFont=timesbd.ttf,ItalicFont=timesi.ttf,BoldItalicFont=timesbi.ttf]
   \setCJKmainfont{simsun.ttc}[Path=fonts/,BoldFont={simsun.ttc},BoldFeatures={FakeBold=\FakeBoldValue},SlantedFont={simsun.ttc},SlantedFeatures={FakeSlant=\FakeSlantValue},ItalicFont={simkai.ttf},BoldItalicFont={simkai.ttf},BoldItalicFeatures={FakeBold=\FakeBoldValue}]
+  \newCJKfontfamily\xdupgtmsongti{simsun.ttc}[Path=fonts/,BoldFont={simsun.ttc},BoldFeatures={FakeBold=\FakeBoldValue},SlantedFont={simsun.ttc},SlantedFeatures={FakeSlant=\FakeSlantValue},ItalicFont={simkai.ttf},BoldItalicFont={simkai.ttf},BoldItalicFeatures={FakeBold=\FakeBoldValue}]
   \newCJKfontfamily\heiti{simhei.ttf}[Path=fonts/,BoldFont={simhei.ttf},BoldFeatures={FakeBold=\FakeBoldValue}]
   \newCJKfontfamily\stzhongsong{STZHONGS.TTF}[Path=fonts/,BoldFont={STZHONGS.TTF},BoldFeatures={FakeBold=\FakeBoldValue}]
 \else
   \setmainfont{Times New Roman}
   \setCJKmainfont{SimSun}[BoldFont={SimSun},BoldFeatures={FakeBold=\FakeBoldValue},SlantedFont={SimSun},SlantedFeatures={FakeSlant=\FakeSlantValue},ItalicFont={KaiTi},BoldItalicFont={KaiTi},BoldItalicFeatures={FakeBold=\FakeBoldValue}]
+  \newCJKfontfamily\xdupgtmsongti{SimSun}[BoldFont={SimSun},BoldFeatures={FakeBold=\FakeBoldValue},SlantedFont={SimSun},SlantedFeatures={FakeSlant=\FakeSlantValue},ItalicFont={KaiTi},BoldItalicFont={KaiTi},BoldItalicFeatures={FakeBold=\FakeBoldValue}]
   \newCJKfontfamily\heiti{SimHei}[BoldFont={SimHei},BoldFeatures={FakeBold=\FakeBoldValue}]
   \newCJKfontfamily\stzhongsong{STZhongsong}[BoldFont={STZhongsong},BoldFeatures={FakeBold=\FakeBoldValue}]
 \fi
+
+% 默认正文明确使用宋体和 Times New Roman；标题在使用处显式切换字体。
+\newcommand\xdupgtmtextfont{\rmfamily\xdupgtmsongti}
 
 \newcommand\ulthickness{1pt}
 \newcommand\valueWithUL[2]{\CJKunderline[thickness=\ulthickness]{\makebox[#1]{#2}}}
@@ -89,14 +94,15 @@
 \newlength\boxmargin\setlength{\boxmargin}{5pt}
 \newlength\boxrule\setlength{\boxrule}{1pt}
 \tcbset{standard jigsaw,sharp corners=all,colframe=black,opacityback=0,boxsep=0pt,boxrule=\boxrule,top=\boxmargin,bottom=\boxmargin,left=\boxmargin,right=\boxmargin,beforeafter skip=0pt}
-\newtcolorbox{mybox1}{before upper={\noindent\linespread{1}\fontsize{12}{20}\selectfont}}
-\newtcolorbox{mybox2}{before upper={\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},breakable,height fixed for=all,height fill=maximum,space to upper,lower separated=false,halign lower=flush right}
-\newtcolorbox{mybox4}{before upper={\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},height=.5\textheight-.3\baselineskip+0.6pt,space to upper,lower separated=false,halign lower=flush right}
+\newtcolorbox{mybox1}{before upper={\xdupgtmtextfont\noindent\linespread{1}\fontsize{12}{20}\selectfont}}
+\newtcolorbox{mybox2}{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},breakable,height fixed for=all,height fill=maximum,space to upper,lower separated=false,halign lower=flush right}
+\newtcolorbox{mybox4}{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},height=.5\textheight-.3\baselineskip+0.6pt,space to upper,lower separated=false,halign lower=flush right}
 \newlength\sideboxheight
 \newtcolorbox{myboxside}{frame hidden,boxrule=0pt,top=0pt,bottom=0pt,left=0pt,right=0pt,boxsep=0pt,beforeafter skip=0pt}
 
 % 封面与中期考核要求页，字段与官方 Word 表一致。
 \AtBeginDocument{
+  \xdupgtmtextfont
   \begin{titlepage}
   \vspace*{-4pt}
   \begin{flushright}\zihao{3}\textbf{学号\enskip}\CJKunderline[thickness=\ulthickness]{\enskip\studentNo\enskip}\end{flushright}
@@ -122,8 +128,8 @@
   \end{center}
   \vfill\begin{center}\zihao{3}西安电子科技大学研究生院制\end{center}
   \end{titlepage}\newpage
-  \vspace*{-28pt}\begin{center}\stzhongsong\zihao{3}\ifddegree 西安电子科技大学博士学位论文中期考核要求\else 西安电子科技大学硕士学位论文中期考核要求\fi\end{center}
-  \vspace{15pt}\zihao{-4}\setlength{\baselineskip}{28pt}\setlength{\parindent}{0pt}
+  \vspace*{-28pt}\begin{center}{\stzhongsong\zihao{3}\ifddegree 西安电子科技大学博士学位论文中期考核要求\else 西安电子科技大学硕士学位论文中期考核要求\fi}\end{center}
+  \vspace{15pt}\xdupgtmtextfont\zihao{-4}\setlength{\baselineskip}{28pt}\setlength{\parindent}{0pt}
   \ifddegree
     一、博士生在完成学位论文开题报告后一年内，必须进行学位论文中期考核，具体要求参照开题报告会要求执行。\par
     二、中期考核每年举行2次（6月和12月），每位博士生根据自身实际情况选择考核时间。\par
@@ -154,6 +160,7 @@
 \NewEnviron{jsyj}{
   \vspace*{8pt}
   \begin{myboxside}
+  \xdupgtmtextfont
   \setlength{\sideboxheight}{\dimexpr\textheight-2\boxmargin-2\boxrule-8pt\relax}
   \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
   \parbox[t][\sideboxheight][t]{8em}{\textbf{指导教师评价意见}} &
@@ -163,6 +170,7 @@
 \NewEnviron{xnjsyj}{
   \vspace*{8pt}
   \begin{myboxside}
+  \xdupgtmtextfont
   \setlength{\sideboxheight}{\dimexpr\textheight/2-\boxmargin-\boxrule-8pt\relax}
   \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
   \parbox[t][\sideboxheight][t]{8em}{\textbf{指导教师评价意见}} &
@@ -172,6 +180,7 @@
 \NewEnviron{xyjsyj}{
   \vspace*{8pt}
   \begin{myboxside}
+  \xdupgtmtextfont
   \setlength{\sideboxheight}{\dimexpr\textheight/2-\boxmargin-\boxrule-8pt\relax}
   \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
   \parbox[t][\sideboxheight][t]{8em}{\textbf{校外指导教师评价意见}} &
@@ -179,7 +188,7 @@
   \end{tabularx}
   \end{myboxside}}
 
-\newenvironment{pyjl}{\vspace*{8pt}\begin{mybox2}\noindent\textbf{中期总结报告评语及结论}\par\noindent（中期考核结论分为两种：1.通过，按专家意见修改后继续学位论文撰写工作；2.不通过，重新考核。评语重点指出中期报告存在的问题并提出具体修改意见和建议。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 组长签名：\makebox[10em][l]{\zzqm}\\成员签名：\makebox[10em][l]{\cyqm}\\\cyqmrq\end{mybox2}}
+\newenvironment{pyjl}{\vspace*{8pt}\begin{mybox2}\xdupgtmtextfont\noindent\textbf{中期总结报告评语及结论}\par\noindent（中期考核结论分为两种：1.通过，按专家意见修改后继续学位论文撰写工作；2.不通过，重新考核。评语重点指出中期报告存在的问题并提出具体修改意见和建议。）\par}{\tcblower\xdupgtmtextfont\linespread{1}\fontsize{12}{30}\selectfont 组长签名：\makebox[10em][l]{\zzqm}\\成员签名：\makebox[10em][l]{\cyqm}\\\cyqmrq\end{mybox2}}
 
-\ctexset{section={name={,、},number={\chinese{section}},format={\raggedright\bfseries\zihao{-4}},aftername={},afterskip={0pt plus 0pt minus 0pt}}}
+\ctexset{section={name={,、},number={\chinese{section}},format={\raggedright\xdupgtmtextfont\bfseries\zihao{-4}},aftername={},afterskip={0pt plus 0pt minus 0pt}}}
 \endinput
