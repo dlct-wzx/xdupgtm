@@ -92,6 +92,8 @@
 \newtcolorbox{mybox1}{before upper={\noindent\linespread{1}\fontsize{12}{20}\selectfont}}
 \newtcolorbox{mybox2}{before upper={\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},breakable,height fixed for=all,height fill=maximum,space to upper,lower separated=false,halign lower=flush right}
 \newtcolorbox{mybox4}{before upper={\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},height=.5\textheight-.3\baselineskip+0.6pt,space to upper,lower separated=false,halign lower=flush right}
+\newlength\sideboxheight
+\newtcolorbox{myboxside}{frame hidden,boxrule=0pt,top=0pt,bottom=0pt,left=0pt,right=0pt,boxsep=0pt,beforeafter skip=0pt}
 
 % 封面与中期考核要求页，字段与官方 Word 表一致。
 \AtBeginDocument{
@@ -149,9 +151,33 @@
 \newenvironment{gzhjh}{\midtermsection{四、下一步工作计划及需要完成的研究内容和需要解决的关键技术}{}}{\midtermend}
 \newenvironment{kycg}{\midtermsection{五、已发表的与学位论文相关的学术论文、其他研究成果以及拟发表的研究成果}{}}{\midtermend}
 
-\newenvironment{jsyj}{\vspace*{8pt}\begin{mybox2}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 指导教师签名：\makebox[6em][l]{\zdjsqm}\\\zdjsqmrq\end{mybox2}}
-\newenvironment{xnjsyj}{\vspace*{8pt}\begin{mybox4}\noindent\textbf{指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校内指导教师签名：\makebox[6em][l]{\xnjsqm}\\\xnjsqmrq\end{mybox4}}
-\newenvironment{xyjsyj}{\vspace*{8pt}\begin{mybox4}\noindent\textbf{校外指导教师评价意见}\par\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 校外指导教师签名：\makebox[6em][l]{\xyjsqm}\\\xyjsqmrq\end{mybox4}}
+\NewEnviron{jsyj}{
+  \vspace*{8pt}
+  \begin{myboxside}
+  \setlength{\sideboxheight}{\dimexpr\textheight-2\boxmargin-2\boxrule-8pt\relax}
+  \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
+  \parbox[t][\sideboxheight][t]{8em}{\textbf{指导教师评价意见}} &
+  \parbox[t][\sideboxheight][t]{\dimexpr\linewidth-8em-2\tabcolsep-2\arrayrulewidth\relax}{\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par\BODY\vfill\raggedleft 指导教师签名：\makebox[6em][l]{\zdjsqm}\\\zdjsqmrq}\\
+  \end{tabularx}
+  \end{myboxside}}
+\NewEnviron{xnjsyj}{
+  \vspace*{8pt}
+  \begin{myboxside}
+  \setlength{\sideboxheight}{\dimexpr\textheight/2-\boxmargin-\boxrule-8pt\relax}
+  \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
+  \parbox[t][\sideboxheight][t]{8em}{\textbf{指导教师评价意见}} &
+  \parbox[t][\sideboxheight][t]{\dimexpr\linewidth-8em-2\tabcolsep-2\arrayrulewidth\relax}{\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par\BODY\vfill\raggedleft 校内指导教师签名：\makebox[6em][l]{\xnjsqm}\\\xnjsqmrq}\\
+  \end{tabularx}
+  \end{myboxside}}
+\NewEnviron{xyjsyj}{
+  \vspace*{8pt}
+  \begin{myboxside}
+  \setlength{\sideboxheight}{\dimexpr\textheight/2-\boxmargin-\boxrule-8pt\relax}
+  \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{8em}|X|}
+  \parbox[t][\sideboxheight][t]{8em}{\textbf{校外指导教师评价意见}} &
+  \parbox[t][\sideboxheight][t]{\dimexpr\linewidth-8em-2\tabcolsep-2\arrayrulewidth\relax}{\noindent（重点写出该生的表现、计划完成情况、对后续工作情况的估计等。）\par\BODY\vfill\raggedleft 校外指导教师签名：\makebox[6em][l]{\xyjsqm}\\\xyjsqmrq}\\
+  \end{tabularx}
+  \end{myboxside}}
 
 \newenvironment{pyjl}{\vspace*{8pt}\begin{mybox2}\noindent\textbf{中期总结报告评语及结论}\par\noindent（中期考核结论分为两种：1.通过，按专家意见修改后继续学位论文撰写工作；2.不通过，重新考核。评语重点指出中期报告存在的问题并提出具体修改意见和建议。）\par}{\tcblower\linespread{1}\fontsize{12}{30}\selectfont 组长签名：\makebox[10em][l]{\zzqm}\\成员签名：\makebox[10em][l]{\cyqm}\\\cyqmrq\end{mybox2}}
 
