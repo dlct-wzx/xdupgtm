@@ -7,7 +7,7 @@
 - `xdupgtm.cls`：模板文档类，提供封面、考核要求页、报告内容框、导师评价和中期总结评语页。
 - `xdupgtm.tex`：可直接编辑的主示例。
 - `examples/xdupgtm-*.tex`：学术博士（`da`）、专业博士（`dp`）、学术硕士（`ma`）和专业硕士（`mp`）示例。
-- `reference/`：本模板使用的学校官方 Word 参考表及其链接、MD5 记录。
+- `reference/`：本模板使用的学校官方 Word 参考表、由 Microsoft Word 原生导出的同名 PDF，以及链接、MD5 记录。PDF 用于逐页核对字体、表格和分页。
 
 ## 使用
 
@@ -23,7 +23,7 @@ xelatex xdupgtm
 latexmk
 ```
 
-Windows 已内置模板使用的宋体、黑体、楷体、华文中宋和 Times New Roman。GNU/Linux、macOS、Overleaf 或 TeXPage 请自行准备这些字体；在线平台可在项目中建立 `fonts/` 目录，上传 `simsun.ttc`、`simkai.ttf`、`simhei.ttf`、`STZHONGS.TTF` 以及 Times New Roman 的常规、粗体、斜体和粗斜体文件，并使用：
+本地编译需要宋体、黑体、楷体、华文中宋和 Times New Roman；Windows 上华文中宋通常随 Microsoft Office 提供。GNU/Linux、macOS、Overleaf 或 TeXPage 请自行准备这些字体；在线平台可在项目中建立 `fonts/` 目录，上传 `simsun.ttc`、`simkai.ttf`、`simhei.ttf`、`STZHONGS.TTF` 以及 Times New Roman 的常规、粗体、斜体和粗斜体文件，并使用：
 
 ```latex
 \documentclass[ma,overleaf]{xdupgtm}
@@ -37,18 +37,35 @@ Windows 已内置模板使用的宋体、黑体、楷体、华文中宋和 Times
 \documentclass[ma]{xdupgtm}
 ```
 
-专业学位模板会显示校内导师和校外导师两栏，并分别生成评价意见和签名位置。需要插入电子签名时，将签名图片放入 `figures/sign/`，然后取消示例文件中的对应注释。
+专业学位模板的评价页包含校内导师和校外导师两栏，并分别生成评价意见和签名位置。需要插入电子签名时，将签名图片放入 `figures/sign/`，然后取消示例文件中的对应注释。
 
-正文各部分使用以下环境，环境会自动生成与官方表格相同的标题、提示语和可分页填写区域：
+正文各部分使用以下环境。第三至第五部分放在 `workplan` 环境中，合用一个表格；填写内容超出一页时，正文表格会自动续页：
 
 ```latex
 \begin{xzlyj}\end{xzlyj}
 \begin{yjmbnr}内容\end{yjmbnr}
 \begin{ywcgz}内容\end{ywcgz}
+\begin{workplan}
 \begin{bxfsm}内容\end{bxfsm}
 \begin{gzhjh}内容\end{gzhjh}
 \begin{kycg}内容\end{kycg}
+\end{workplan}
 ```
+
+`jsyj`（学术学位）或 `xnjsyj`、`xyjsyj`（专业学位）填写导师意见，随后使用 `pyjl` 填写总结评语及结论。评价表保留官方的固定高度，意见过长时应精简文字，避免超出单元格。
+
+## 官方 PDF 核对
+
+`reference/` 中的四份 `.doc` 均已由 Microsoft Word 导出为同名 PDF。空白模板与参考文件的页数一致：
+
+| 类型 | 页数 | 评价页结构 |
+| --- | --- | --- |
+| 学术博士（`da`） | 6 | 导师意见与总结结论合用第 6 页 |
+| 专业博士（`dp`） | 7 | 校内、校外导师意见在第 6 页，总结结论在第 7 页 |
+| 学术硕士（`ma`） | 6 | 导师意见与总结结论合用第 6 页 |
+| 专业硕士（`mp`） | 6 | 校内、校外导师意见及总结结论合用第 6 页 |
+
+已按 PDF 核对要求页的首行缩进、选题来源与第一部分的连续边框、第三至第五部分的位置，以及评价表的左右分栏、合并标签和签名区。报告表标题使用黑体，考核要求页标题使用华文中宋，其余中文使用宋体，西文使用 Times New Roman。
 
 ## 参考与致谢
 
