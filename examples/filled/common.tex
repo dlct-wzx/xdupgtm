@@ -38,11 +38,16 @@
 
 % 自动化测试可定义 xdupgtmStressTest，增加长正文和五名成员签名。
 % 普通填充示例不启用此模式；执行 test-filled.ps1 可同时生成两种版本。
+% 超长测试可将 xdupgtmStressMultiplier 设为 24，生成 1416 段扩展正文。
+\providecommand\xdupgtmStressMultiplier{1}
 \newcount\exampleParagraphCount
+\newcount\exampleParagraphLimit
 \newcommand\exampleExtraParagraphs[1]{%
   \ifdefined\xdupgtmStressTest
     \exampleParagraphCount=0
-    \loop\ifnum\exampleParagraphCount<#1
+    \exampleParagraphLimit=#1
+    \multiply\exampleParagraphLimit by \xdupgtmStressMultiplier\relax
+    \loop\ifnum\exampleParagraphCount<\exampleParagraphLimit
       \advance\exampleParagraphCount by 1
       \par 扩展验证段落（第\the\exampleParagraphCount 段）：本阶段继续考察不同边界条件、网格密度与测量噪声对模型输出的影响。全部算例采用相同的数据划分和评价指标，记录计算时间、相对误差及重复实验的波动范围。对于偏差较大的样本，逐项核查材料参数、激励设置和校准过程，并保存输入文件、程序版本以及分析记录。补充实验按照统一流程执行，使用 MATLAB 和 Python 交叉核对结果，为后续论文中的误差分析和工程验证提供依据。\par
     \repeat

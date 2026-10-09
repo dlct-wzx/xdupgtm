@@ -93,6 +93,27 @@ xelatex -jobname=xdupgtm-ma-filled -output-directory=output/pdf examples/filled/
 
 普通填充 PDF 位于 `output/pdf/`，页数依次为学术博士 6 页、专业博士 7 页、学术硕士 6 页和专业硕士 6 页。长正文 PDF、空白回归 PDF、渲染图片及检查报告位于 `_qa_filled/`。这些生成文件不纳入 Git，填充示例、测试脚本和公开示例图片纳入 Git。
 
+### 超长正文测试
+
+超长测试会生成包含实际正文的四份 `.tex` 文件，每份约 0.8 MB，包含 1,416 段扩展正文，编译后约 27 万字符。在仓库根目录执行：
+
+```powershell
+./examples/filled/test-filled.ps1 -StressMultiplier 24 -StressOnly
+```
+
+`-StressMultiplier` 控制原有 59 段压力正文的倍数，`-StressOnly` 只构建压力版本；不加此选项时同时回归普通填充和空白示例。加上 `-Render` 可渲染全部页面。生成的实际 TeX 输入位于 `_qa_filled/source/`，PDF 位于 `output/pdf/xdupgtm-*-ultralong.pdf`，检查报告位于 `_qa_filled/ultralong-report.json`。
+
+| 类型 | 超长测试页数 | 扩展段落数 |
+| --- | --- | --- |
+| 学术博士（`da`） | 257 | 1,416 |
+| 专业博士（`dp`） | 258 | 1,416 |
+| 学术硕士（`ma`） | 257 | 1,416 |
+| 专业硕士（`mp`） | 257 | 1,416 |
+
+测试发现并修复了两类极长正文问题：第三、第四部分计算补白高度时触发 TeX 长度溢出，以及普通分页模式在极大内容量下成功编译却丢失后半段正文。模板现在只测量前 180 磅来判断补白，并使用 `tcolorbox` 提供的 `breakable=unlimited` 分页模式。
+
+检查脚本逐部分核对每段编号、顺序和完整文字，逐页检查表格边框及正文范围，并验证末尾评价表中的五名成员签名和图片日期。导师意见与考核评语仍使用官方固定高度的评价单元格，本项超长测试扩展的是第一至第五部分正文。
+
 ## 参考与致谢
 
 官方 Word 参考表来自西安电子科技大学研究生院相关通知，原始文件保存在 `reference/`。本模板的字体、页面结构、签名处理和学位类型设计参考并感谢开题模板仓库：[https://github.com/note286/xdupgtp](https://github.com/note286/xdupgtp)。感谢该仓库作者 note286 的开源工作。
