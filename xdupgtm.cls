@@ -115,14 +115,16 @@
 \newlength\boxrule\setlength{\boxrule}{0.5bp}
 \tcbset{standard jigsaw,sharp corners=all,colframe=black,opacityback=0,boxsep=0pt,boxrule=\boxrule,top=\boxmargin,bottom=\boxmargin,left=\boxmargin,right=\boxmargin,beforeafter skip=0pt}
 \newtcolorbox{mybox1}{before upper={\xdupgtmtextfont\noindent\linespread{1}\fontsize{12}{20}\selectfont}}
-\newtcolorbox{mybox2}[1][]{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12bp}{20bp}\selectfont},breakable,height fixed for=all,height fill=maximum,space to upper,lower separated=false,halign lower=flush right,#1}
+\newtcolorbox{mybox2}[1][]{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12bp}{20bp}\selectfont},breakable=unlimited,height fixed for=all,height fill=maximum,space to upper,lower separated=false,halign lower=flush right,#1}
 \newtcolorbox{mybox4}{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12}{20}\selectfont},height=.5\textheight-.3\baselineskip+0.6pt,space to upper,lower separated=false,halign lower=flush right}
-\newtcolorbox{mybox3}{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12bp}{20bp}\selectfont},top=1.7bp,breakable,height fixed for=all,height fill=maximum,space to upper}
+\newtcolorbox{mybox3}{before upper={\xdupgtmtextfont\setlength{\parindent}{2em}\linespread{1}\fontsize{12bp}{20bp}\selectfont},top=1.7bp,breakable=unlimited,height fixed for=all,height fill=maximum,space to upper}
 \newlength\sideboxheight
 \newlength\reviewrowheight
 \newlength\reviewrowtwoheight
 \newlength\reviewrowthreeheight
 \newbox\worksectionbox
+\newbox\worksectionmeasurebox
+\newbox\worksectionheadbox
 \newlength\worksectiongap
 \newtcolorbox{myboxside}{frame hidden,boxrule=0pt,top=0pt,bottom=0pt,left=0pt,right=0pt,boxsep=0pt,beforeafter skip=0pt}
 
@@ -197,7 +199,20 @@
 }
 % 空白表中前两部分各占 180 磅；填入正文后只补足不足的高度。
 \newcommand\worksectionstart[1]{\setbox\worksectionbox=\vbox\bgroup\hsize=\linewidth\noindent\strut\textbf{#1}\par}
-\newcommand\worksectionend{\par\egroup\setlength{\worksectiongap}{\maxof{0pt}{180bp-\ht\worksectionbox-\dp\worksectionbox}}\unvbox\worksectionbox\vspace*{\worksectiongap}}
+% 仅测量前 180 磅；整块超长内容的高度可能超出 TeX 的长度或整数上限。
+\newcommand\worksectionend{%
+  \par\egroup
+  \begingroup
+  \setlength{\worksectiongap}{0pt}%
+  \vbadness=10000\vfuzz=\maxdimen
+  \setbox\worksectionmeasurebox=\copy\worksectionbox
+  \setbox\worksectionheadbox=\vsplit\worksectionmeasurebox to180bp
+  \ifvoid\worksectionmeasurebox
+    \setbox\worksectionheadbox=\vbox{\unvbox\worksectionheadbox}%
+    \setlength{\worksectiongap}{\maxof{0pt}{180bp-\ht\worksectionheadbox-\dp\worksectionheadbox}}%
+  \fi
+  \unvbox\worksectionbox\vspace*{\worksectiongap}%
+  \endgroup}
 \newenvironment{bxfsm}{
   \ifinworkplan\worksectionstart{三、现阶段完成的工作与开题报告内容不相符的情况说明}
   \else\vspace*{8pt}\begin{mybox3}\noindent\textbf{三、现阶段完成的工作与开题报告内容不相符的情况说明}\par\fi
