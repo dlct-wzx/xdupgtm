@@ -20,6 +20,7 @@
 .DS_Store
 xdupgtm.pdf
 *.pdf
+!reference/*.pdf
 _qa*/
 _all.txt
 _page8.html
