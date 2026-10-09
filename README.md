@@ -35,6 +35,8 @@ xelatex examples/xdupgtm-ma.tex
 
 所有模板的学号、题目、姓名、学科或领域、导师、学院、日期和选题来源均为空，只保留填写说明。
 
+主模板和四个示例在 `\iffalse` 条件块中保留 `\section`、`\subsection` 章节大纲，供编辑器导航使用；该条件块编译时跳过，不会改变官方表格版式。
+
 ## 字体与环境
 
 使用 TeX Live 2021 或更新版本的 XeLaTeX。本地需要宋体、黑体、楷体、华文中宋和 Times New Roman；华文中宋通常随 Microsoft Office 提供。本仓库不分发字体文件。
