@@ -7,7 +7,7 @@
 - `xdupgtm.cls`：文档类，生成封面、考核要求、正文表格、导师评价和考核结论。
 - `xdupgtm.tex`：空白主模板，保留字段说明和填写注释，默认使用学术博士版式。
 - `examples/xdupgtm-*.tex`：四种学位类型的空白模板。
-- `reference/`：学校官方 Word 参考表、同名 PDF，以及来源链接和 MD5 记录。
+- `reference/`：本地版式核对目录，已由 Git 忽略，不随仓库分发。
 - `latexmkrc`：XeLaTeX 编译配置。
 
 ## 使用方法
@@ -71,9 +71,16 @@ Overleaf、TeXPage 或其他未安装这些字体的平台，可建立 `fonts/` 
 
 ## 参考与致谢
 
-官方参考表来自西安电子科技大学研究生院相关通知，保存在 `reference/`。本模板的字体、页面结构、签名处理和学位类型设计参考并感谢开题模板仓库：[https://github.com/note286/xdupgtp](https://github.com/note286/xdupgtp)。感谢作者 note286 的开源工作。
+官方参考表来自西安电子科技大学研究生院相关通知，可从以下页面下载并保存在本地 `reference/` 目录中：
 
-正式提交前请核对研究生院发布的最新表格。参考文件的来源与 MD5 记录见 `reference/网址&md5值.txt`。
+- [学术博士](https://gr.xidian.edu.cn/info/1047/7160.htm)
+- [专业博士](https://gr.xidian.edu.cn/info/1047/7803.htm)
+- [学术硕士](https://gr.xidian.edu.cn/info/1047/5087.htm)
+- [专业硕士](https://gr.xidian.edu.cn/info/1047/5086.htm)
+
+本模板的字体、页面结构、签名处理和学位类型设计参考并感谢开题模板仓库：[https://github.com/note286/xdupgtp](https://github.com/note286/xdupgtp)。感谢作者 note286 的开源工作。
+
+正式提交前请核对研究生院发布的最新表格。
 
 ## 许可
 

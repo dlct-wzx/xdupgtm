@@ -20,6 +20,6 @@
 .DS_Store
 xdupgtm.pdf
 *.pdf
-!reference/*.pdf
+/reference/
 _qa*/
 __pycache__/
