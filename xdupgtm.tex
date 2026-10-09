@@ -1,29 +1,34 @@
+% 西安电子科技大学研究生中期考核空白模板。
+% 按下面的字段说明填写基本信息，再填写各报告部分。
 \documentclass{xdupgtm}
 
 % 学位类型：da 学术博士，dp 专业博士，ma 学术硕士，mp 专业硕士
 % \documentclass[ma]{xdupgtm}
-\newcommand\studentNo{1101110071}
-\newcommand\thesisTitleOne{西安电子科技大学学位论文}
-\newcommand\thesisTitleTwo{中期考核报告表 XeLaTeX 模板}
-\newcommand\authorName{张三}
-\newcommand\major{电子科学与技术}
-\newcommand\submajor{电磁场与微波技术}
-\newcommand\advisorName{李四}
-\newcommand\entadvisorName{王五}
-\newcommand\school{电子工程学院}
-\newcommand\submitDate{2026年10月8日}
-\newcommand\subjectSource{国家自然科学基金}
+% 学号、论文题目、姓名、学科或领域、导师、学院、日期和选题来源
+\newcommand\studentNo{}
+\newcommand\thesisTitleOne{}
+\newcommand\thesisTitleTwo{}
+\newcommand\authorName{}
+\newcommand\major{}
+\newcommand\submajor{}
+\newcommand\advisorName{}
+\newcommand\entadvisorName{}
+\newcommand\school{}
+\newcommand\submitDate{}
+\newcommand\subjectSource{}
 
 % 需要电子签名时取消注释，并将图片放入 figures/sign/。
-% \renewcommand\zdjsqm{\sign{lisi}}
-% \renewcommand\zdjsqmrq{2026年10月8日}
-% \renewcommand\xnjsqm{\sign{lisi}}
-% \renewcommand\xyjsqm{\sign{lisi}}
-% \renewcommand\zzqm{\sign{lisi}}
-% \renewcommand\cyqm{\sign{lisi}\emptysign\sign{lisi}}
+% \renewcommand\zdjsqm{\sign{advisor.png}}
+% \renewcommand\zdjsqmrq{年\qquad 月\qquad 日}
+% \renewcommand\xnjsqm{\sign{internal-advisor.png}}
+% \renewcommand\xnjsqmrq{年\qquad 月\qquad 日}
+% \renewcommand\xyjsqm{\sign{external-advisor.png}}
+% \renewcommand\xyjsqmrq{年\qquad 月\qquad 日}
+% \renewcommand\zzqm{\sign{chair.png}}
+% \renewcommand\cyqm{\sign{member-one.png}\emptysign\sign{member-two.png}}
+% \renewcommand\cyqmrq{年\qquad 月\qquad 日}
 
 \begin{document}
-
 \begin{xzlyj}\end{xzlyj}
 \begin{yjmbnr}
 % 在这里填写学位论文研究目标及研究内容。
@@ -35,18 +40,14 @@
 % 第三至第五部分合用一个表格，保留 workplan 外层环境。
 \begin{bxfsm}
 % 在这里填写与开题报告内容不相符的情况说明；没有变化时填写“无”。
-% 填写示例：研究目标与开题报告一致，暂无调整。
 \end{bxfsm}
 \begin{gzhjh}
 % 在这里填写下一步工作计划、拟完成的研究内容和需解决的关键技术。
-% 填写示例：完成补充实验与结果分析，完善论文并提交导师审阅。
 \end{gzhjh}
 \begin{kycg}
 % 在这里填写已发表、已录用或拟发表的论文及其他研究成果。
-% 填写示例：列出论文题目、作者、期刊或会议、发表状态及与本课题的关系。
 \end{kycg}
 \end{workplan}
-
 \ifadegree
   \begin{jsyj}
   % 在这里填写指导教师评价意见。
@@ -59,9 +60,7 @@
   % 在这里填写校外指导教师评价意见。
   \end{xyjsyj}
 \fi
-
 \begin{pyjl}
 % 在这里填写中期总结报告评语及结论。
 \end{pyjl}
-
 \end{document}
