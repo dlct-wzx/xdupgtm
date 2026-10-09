@@ -1,0 +1,150 @@
+% 四类填充示例共用的正文；应由同目录的 xdupgtm-*.tex 引入。
+% 本文件中的姓名、项目、实验结果和成果均用于排版测试，不可直接提交。
+% signature-sample.png 和 date-sample.png 来自 note286/xdupgtp 的公开示例。
+% 所有签名位置重复使用同一示例图片，仅检验尺寸、换行和单元格边界。
+
+% 基本信息示例：长题目分成两行，测试封面下划线和日期。
+\newcommand\studentNo{1101110071}
+\newcommand\thesisTitleOne{复杂电磁环境下的高效建模与实验验证}
+\newcommand\thesisTitleTwo{中期考核报告（填充测试示例）}
+\newcommand\authorName{张三}
+\ifadegree
+  \newcommand\major{电子科学与技术}
+  \newcommand\submajor{电磁场与微波技术}
+\else
+  \newcommand\major{电子信息}
+  \newcommand\submajor{新一代电子信息技术}
+\fi
+\newcommand\advisorName{李四}
+\newcommand\entadvisorName{王五}
+\newcommand\school{电子工程学院}
+\newcommand\submitDate{2026年10月9日}
+\newcommand\subjectSource{科研项目与工程应用需求（虚构测试项目）}
+
+% 学术学位导师、专业学位校内导师及组长：图片签名配合文字日期。
+\renewcommand\zdjsqm{\sign{examples/filled/signature-sample.png}}
+\renewcommand\zdjsqmrq{2026年10月9日}
+\renewcommand\xnjsqm{\sign{examples/filled/signature-sample.png}}
+\renewcommand\xnjsqmrq{2026年10月9日}
+\renewcommand\zzqm{\sign{examples/filled/signature-sample.png}}
+% 校外导师：图片签名配合图片日期，测试不同宽高比的图片。
+\renewcommand\xyjsqm{\sign{examples/filled/signature-sample.png}}
+\renewcommand\xyjsqmrq{\sign{examples/filled/date-sample.png}}
+% 成员签名：emptysign 在相邻签名之间预留空白，超宽时应自动换行。
+\renewcommand\cyqm{\sign{examples/filled/signature-sample.png}\emptysign
+  \sign{examples/filled/signature-sample.png}\emptysign
+  \sign{examples/filled/signature-sample.png}}
+\renewcommand\cyqmrq{2026年10月9日}
+
+% 自动化测试可定义 xdupgtmStressTest，增加长正文和五名成员签名。
+% 普通填充示例不启用此模式；执行 test-filled.ps1 可同时生成两种版本。
+\newcount\exampleParagraphCount
+\newcommand\exampleExtraParagraphs[1]{%
+  \ifdefined\xdupgtmStressTest
+    \exampleParagraphCount=0
+    \loop\ifnum\exampleParagraphCount<#1
+      \advance\exampleParagraphCount by 1
+      \par 扩展验证段落（第\the\exampleParagraphCount 段）：本阶段继续考察不同边界条件、网格密度与测量噪声对模型输出的影响。全部算例采用相同的数据划分和评价指标，记录计算时间、相对误差及重复实验的波动范围。对于偏差较大的样本，逐项核查材料参数、激励设置和校准过程，并保存输入文件、程序版本以及分析记录。补充实验按照统一流程执行，使用 MATLAB 和 Python 交叉核对结果，为后续论文中的误差分析和工程验证提供依据。\par
+    \repeat
+  \fi}
+\ifdefined\xdupgtmStressTest
+  \renewcommand\cyqm{\sign{examples/filled/signature-sample.png}\emptysign
+    \sign{examples/filled/signature-sample.png}\emptysign
+    \sign{examples/filled/signature-sample.png}\emptysign
+    \sign{examples/filled/signature-sample.png}\emptysign
+    \sign{examples/filled/signature-sample.png}}
+\fi
+
+\begin{document}
+% 选题来源通过上面的 subjectSource 填写，来源行与第一部分边框相连。
+\begin{xzlyj}\end{xzlyj}
+\begin{yjmbnr}
+% 第一部分示例：使用正常段落、英文术语及编号列表描述目标和内容。
+本课题面向复杂电磁环境中的快速预测与可靠验证需求，研究兼顾计算效率与精度的建模方法。研究目标是在保持物理约束的基础上，建立可复用的数值计算流程，并通过仿真算例和实验测量检验其适用范围。研究目标及研究内容与开题报告保持一致。
+
+拟开展的研究内容包括：分析结构参数与电磁响应之间的关系，建立基准模型及误差评价方法；研究参数化模型的降阶计算策略，降低重复计算开销；搭建验证平台，对典型工况进行测量并分析模型偏差。
+
+\begin{enumerate}
+  \item 建立可追溯的参数与数据管理流程，统一输入格式、单位和评价指标。
+  \item 对比 Full-wave simulation 与降阶模型，评估精度、速度和稳定性。
+  \item 采用独立测试样本检验模型的泛化能力，并明确方法的应用边界。
+\end{enumerate}
+研究中将保留原始数据、计算脚本和处理日志。所有测试样本均分离于模型拟合过程，避免训练数据与验证数据混用。
+\exampleExtraParagraphs{14}
+本部分的目标和研究内容已完整列出。
+\end{yjmbnr}
+
+\begin{ywcgz}
+% 第二部分示例：段落与小型表格混排，数字和西文使用 Times New Roman。
+目前已完成文献整理、基准模型构建及第一轮仿真验证。理论研究方面，梳理了频域求解、模型降阶及不确定性分析方法，确定以相对误差和计算耗时作为主要评价指标，并建立参数归一化与结果复核流程。
+
+数值研究方面，完成三类典型结构的网格划分与边界条件设置，构建了包含 120 组参数配置的测试数据。对相同配置重复计算后，输出结果保持稳定。对部分差异较大的算例进行了网格加密验证，确认误差主要来自结构细节和材料参数变化。
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+验证工况 & 相对误差（\%） & 耗时（s）\\
+\midrule
+基准工况 A & 1.8 & 12.5\\
+扰动工况 B & 2.4 & 14.1\\
+独立工况 C & 3.1 & 15.7\\
+\bottomrule
+\end{tabular}
+\end{center}
+% 表内数据均为虚构，不能作为学术结果引用。
+上述虚构数据仅用于测试表格排版。实验方面，已完成设备校准和初步测量，建立了包含样本编号、环境条件及重复次数的记录表。已获得的阶段性结论是：在当前验证范围内，参数化模型能够保持较小偏差，但对复杂边界条件仍需补充实验。
+
+本阶段形成了基准算例、数据处理脚本和实验记录三类材料。所有材料按版本归档，下一阶段将增加独立样本并开展误差来源分析。
+\exampleExtraParagraphs{16}
+本部分的已完成工作及阶段结论已完整列出。
+\end{ywcgz}
+
+\begin{workplan}
+% 第三至第五部分合用一个表格，长内容应在此表格内续页。
+\begin{bxfsm}
+% 没有偏离时可以直接填写“无”；此处测试包含一项合理调整的说明。
+研究目标与开题报告一致。由于实验设备排期调整，原计划在本阶段完成的高频测量顺延至下一阶段，已通过补充仿真验证先行核查主要假设。该调整不改变研究范围和预期成果，后续将按计划补齐实验数据。
+\exampleExtraParagraphs{3}
+本部分的研究计划调整情况已完整说明。
+\end{bxfsm}
+\begin{gzhjh}
+% 下一步计划可按时间列出，使用列表测试缩进及表格内换行。
+下一阶段拟依次完成以下工作：
+\begin{enumerate}
+  \item 2026年10月至11月：完善复杂边界工况，补充网格收敛与参数敏感性分析。
+  \item 2026年12月至2027年1月：开展独立测量，核查实验与仿真偏差，完成交叉验证。
+  \item 2027年2月至3月：整理阶段成果，完成论文初稿并根据导师意见修改。
+\end{enumerate}
+需要解决的关键技术包括复杂结构的稳定参数化、有限样本下的误差评估，以及测量数据与仿真结果之间的统一校准。
+\exampleExtraParagraphs{16}
+本部分的后续计划和关键技术已完整列出。
+\end{gzhjh}
+\begin{kycg}
+% 区分已发表、已录用和拟发表，避免将计划成果写成已完成成果。
+已形成基准模型、计算脚本及阶段实验记录，相关材料均为本示例的虚构内容。截至本次考核，尚无已发表或已录用论文。
+
+拟在完成独立验证后整理一篇关于参数化建模与误差分析的论文，目前处于材料准备阶段。另计划将数据整理流程形成可复现的研究附件，随论文初稿提交导师审阅。
+\exampleExtraParagraphs{10}
+本部分的成果及发表状态已完整列出。
+\end{kycg}
+\end{workplan}
+
+% 导师意见保持简洁，以适应官方表格的固定高度。
+\ifadegree
+\begin{jsyj}
+该生已完成基准模型和初步验证，研究进度符合计划。建议补充独立实验并加强误差分析，继续推进论文工作。
+\end{jsyj}
+\else
+\begin{xnjsyj}
+该生已完成基准模型和初步验证，进度符合计划。建议补充独立实验，加强误差分析。
+\end{xnjsyj}
+\begin{xyjsyj}
+研究内容与工程需求一致，阶段材料完整。建议补充实际工况测量并完善验证记录。
+\end{xyjsyj}
+\fi
+
+\begin{pyjl}
+% 此处为虚构评语；正式报告中的结论和签名由考核人员确认。
+考核组认为该生已完成预定的阶段研究任务，报告结构完整，能够说明研究进展和后续计划。建议增加独立样本，进一步分析误差来源，并明确方法的适用边界。中期考核结论：通过，按专家意见修改后继续学位论文撰写工作。
+\end{pyjl}
+\end{document}

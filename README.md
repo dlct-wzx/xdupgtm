@@ -7,6 +7,7 @@
 - `xdupgtm.cls`：模板文档类，提供封面、考核要求页、报告内容框、导师评价和中期总结评语页。
 - `xdupgtm.tex`：可直接编辑的主示例。
 - `examples/xdupgtm-*.tex`：学术博士（`da`）、专业博士（`dp`）、学术硕士（`ma`）和专业硕士（`mp`）示例。
+- `examples/filled/`：四类带完整正文、表格、导师意见和签名的填充示例，以及可重复运行的测试脚本。
 - `reference/`：本模板使用的学校官方 Word 参考表、由 Microsoft Word 原生导出的同名 PDF，以及链接、MD5 记录。PDF 用于逐页核对字体、表格和分页。
 
 ## 使用
@@ -39,6 +40,8 @@ latexmk
 
 专业学位模板的评价页包含校内导师和校外导师两栏，并分别生成评价意见和签名位置。需要插入电子签名时，将签名图片放入 `figures/sign/`，然后取消示例文件中的对应注释。
 
+成员签名可用 `\sign{图片路径}\emptysign\sign{图片路径}` 依次填写。签名栏根据内容自动扩宽；多张签名超过单元格可用宽度时自动换行。签名图片默认高 `1.5em`，保持原始宽高比，宜使用裁去多余空白的图片。
+
 正文各部分使用以下环境。第三至第五部分放在 `workplan` 环境中，合用一个表格；填写内容超出一页时，正文表格会自动续页：
 
 ```latex
@@ -66,6 +69,29 @@ latexmk
 | 专业硕士（`mp`） | 6 | 校内、校外导师意见及总结结论合用第 6 页 |
 
 已按 PDF 核对要求页的首行缩进、选题来源与第一部分的连续边框、第三至第五部分的位置，以及评价表的左右分栏、合并标签和签名区。报告表标题使用黑体，考核要求页标题使用华文中宋，其余中文使用宋体，西文使用 Times New Roman。
+
+## 填充与签名测试
+
+`examples/filled/xdupgtm-*.tex` 是四类实际填充示例，共用带中文注释的 `common.tex`，包含两行题目、正文段落、编号列表、实验数据表、研究计划、导师意见和考核结论。普通填充示例使用三名成员签名；校外导师日期使用图片，其余日期使用文字。示例中的人员、项目、数据和成果均为虚构，签名与图片日期取自参考仓库的公开测试素材。
+
+在仓库根目录编译，例如：
+
+```shell
+xelatex -jobname=xdupgtm-ma-filled -output-directory=output/pdf examples/filled/xdupgtm-ma.tex
+xelatex -jobname=xdupgtm-ma-filled -output-directory=output/pdf examples/filled/xdupgtm-ma.tex
+```
+
+首次使用时请先建立 `output/pdf/` 目录。运行全部测试可使用 PowerShell 脚本，依赖 XeLaTeX、Python 和 PyMuPDF：
+
+```powershell
+./examples/filled/test-filled.ps1
+```
+
+可用 `-Xelatex` 和 `-Python` 指定程序路径。加上 `-Render` 会调用 Poppler 的 `pdftoppm` 渲染全部普通与长正文测试页，供人工核对。
+
+脚本同时构建四份普通填充 PDF、四份长正文测试 PDF、四份空白示例及主示例。长正文模式每类增加 59 段文字和五名成员签名，测试正文续页及签名换行。自动检查包括各部分末尾文字、全部扩展段落、签名和图片日期的实际出现次数及单元格边界、图片与文字重叠、字体、空白页、纸张边界以及 TeX 溢出日志。
+
+普通填充 PDF 位于 `output/pdf/`，页数依次为学术博士 6 页、专业博士 7 页、学术硕士 6 页和专业硕士 6 页。长正文 PDF、空白回归 PDF、渲染图片及检查报告位于 `_qa_filled/`。这些生成文件不纳入 Git，填充示例、测试脚本和公开示例图片纳入 Git。
 
 ## 参考与致谢
 
