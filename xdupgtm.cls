@@ -68,7 +68,24 @@
 \newsavebox\covervaluebox
 \newcommand\valueWithUL[2]{\sbox\covervaluebox{#2}\CJKunderline[thickness=\ulthickness]{\makebox[#1]{\ifdim\wd\covervaluebox>#1\resizebox{#1}{!}{#2}\else#2\fi}}}
 \newcommand\sign[1]{\includegraphics[height=1.5em,keepaspectratio]{#1}\quad}
-\newcommand\emptysign{\makebox[6em]{}}
+\newcommand\emptysign{\hspace{6em}}
+\newsavebox\signaturecontentbox
+\newlength\signaturewidth
+\newlength\signatureavailablewidth
+% 签名栏按内容扩宽，超过单元格剩余宽度时换行；空白栏保留官方宽度。
+\newcommand\signatureline[3]{%
+  \begingroup
+  \sbox\signaturecontentbox{#3}%
+  \settowidth{\signatureavailablewidth}{#1}%
+  \setlength{\signatureavailablewidth}{\dimexpr\linewidth-\signatureavailablewidth\relax}%
+  \setlength{\signaturewidth}{\maxof{#2}{\wd\signaturecontentbox}}%
+  #1%
+  \ifdim\signaturewidth>\signatureavailablewidth
+    \parbox[t]{\signatureavailablewidth}{\raggedright #3}%
+  \else
+    \makebox[\signaturewidth][l]{\usebox\signaturecontentbox}%
+  \fi
+  \endgroup}
 \newcommand\zdjsqm{}
 \newcommand\zdjsqmrq{年\qquad 月\qquad 日}
 \newcommand\xnjsqm{}
@@ -217,9 +234,9 @@
   \fi
   \noindent\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{12bp}|X|}
   \hline
-  \advisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\advisorBody\par\vfill\raggedleft 指导教师签名：\makebox[7em][l]{\zdjsqm}\\\zdjsqmrq}\\
+  \advisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\advisorBody\par\vfill\raggedleft \signatureline{指导教师签名：}{7em}{\zdjsqm}\\\zdjsqmrq}\\
   \hline
-  \conclusionLabel & \reviewcell{\reviewrowtwoheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft 组长签名：\makebox[7em][l]{\zzqm}\\成员签名：\makebox[7em][l]{\cyqm}\\\cyqmrq}\\
+  \conclusionLabel & \reviewcell{\reviewrowtwoheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft \signatureline{组长签名：}{7em}{\zzqm}\\\signatureline{成员签名：}{7em}{\cyqm}\\\cyqmrq}\\
   \hline
   \end{tabularx}
 }
@@ -227,9 +244,9 @@
   \setlength{\reviewrowheight}{320bp}\setlength{\reviewrowtwoheight}{380bp}
   \noindent\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{12bp}|X|}
   \hline
-  \combinedAdvisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\schoolAdvisorBody\par\vfill\raggedleft 校内指导教师签名：\makebox[5em][l]{\xnjsqm}\\\xnjsqmrq}\\
+  \combinedAdvisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\schoolAdvisorBody\par\vfill\raggedleft \signatureline{校内指导教师签名：}{5em}{\xnjsqm}\\\xnjsqmrq}\\
   \cline{2-2}
-  & \reviewcell{\reviewrowtwoheight}{\externalAdvisorBody\par\vfill\raggedleft 校外指导教师签名：\makebox[5em][l]{\xyjsqm}\\\xyjsqmrq}\\
+  & \reviewcell{\reviewrowtwoheight}{\externalAdvisorBody\par\vfill\raggedleft \signatureline{校外指导教师签名：}{5em}{\xyjsqm}\\\xyjsqmrq}\\
   \hline
   \end{tabularx}
 }
@@ -237,11 +254,11 @@
   \setlength{\reviewrowheight}{160bp}\setlength{\reviewrowtwoheight}{137.5bp}\setlength{\reviewrowthreeheight}{400bp}
   \noindent\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{12bp}|X|}
   \hline
-  \combinedAdvisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\schoolAdvisorBody\par\vfill\raggedleft 校内指导教师签名：\makebox[6em][l]{\xnjsqm}\\\xnjsqmrq}\\
+  \combinedAdvisorLabel & \reviewcell{\reviewrowheight}{\reviewPrompt\par\schoolAdvisorBody\par\vfill\raggedleft \signatureline{校内指导教师签名：}{6em}{\xnjsqm}\\\xnjsqmrq}\\
   \cline{2-2}
-  & \reviewcell{\reviewrowtwoheight}{\externalAdvisorBody\par\vfill\raggedleft 校外指导教师签名：\makebox[6em][l]{\xyjsqm}\\\xyjsqmrq}\\
+  & \reviewcell{\reviewrowtwoheight}{\externalAdvisorBody\par\vfill\raggedleft \signatureline{校外指导教师签名：}{6em}{\xyjsqm}\\\xyjsqmrq}\\
   \hline
-  \conclusionLabel & \reviewcell{\reviewrowthreeheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft 组长签名：\makebox[10em][l]{\zzqm}\\[20bp]成员签名：\makebox[10em][l]{\cyqm}\\[20bp]\cyqmrq}\\
+  \conclusionLabel & \reviewcell{\reviewrowthreeheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft \signatureline{组长签名：}{10em}{\zzqm}\\[20bp]\signatureline{成员签名：}{10em}{\cyqm}\\[20bp]\cyqmrq}\\
   \hline
   \end{tabularx}
 }
@@ -250,7 +267,7 @@
   \setlength{\reviewrowheight}{720bp}
   \noindent\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{12bp}|X|}
   \hline
-  \conclusionLabel & \reviewcell{\reviewrowheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft 组长签名：\makebox[7em][l]{\zzqm}\\成员签名：\makebox[7em][l]{\cyqm}\\[20bp]\cyqmrq}\\
+  \conclusionLabel & \reviewcell{\reviewrowheight}{\reviewConclusionPrompt\par\BODY\par\vfill\raggedleft \signatureline{组长签名：}{7em}{\zzqm}\\\signatureline{成员签名：}{7em}{\cyqm}\\[20bp]\cyqmrq}\\
   \hline
   \end{tabularx}
 }
